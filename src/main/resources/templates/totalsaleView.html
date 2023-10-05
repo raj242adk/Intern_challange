@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Total Sale</title>
+</head>
+<body>
+<h1>Total Sale</h1>
+<div th:each="entry : ${totalProduct}">
+    <p th:text="${entry.key}"></p>
+    <p th:text="${entry.value}"></p>
+</div>
+</body>
+</html>
