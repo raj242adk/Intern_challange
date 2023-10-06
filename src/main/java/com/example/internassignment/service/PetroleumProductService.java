@@ -26,13 +26,10 @@ public class PetroleumProductService {
 
     public void fetchDataAndStoreInDatabase() {
         String apiEndPoint = "https://raw.githubusercontent.com/younginnovations/internship-challenges/master/programming/petroleum-report/data.json";
-
-
         // Make an API call to fetch data from the provided URL
         ResponseEntity<String> response = new RestTemplate().getForEntity(
                 apiEndPoint, String.class
         );
-
         if (response.getStatusCode() == HttpStatus.OK) {
             try {
                 // Parse the JSON response
@@ -44,16 +41,11 @@ public class PetroleumProductService {
                 throw new RuntimeException(e);
             }
         }
-
     }
-
-
     public Map<String, Double> listTotalSaleOfPetroleumProducts() {
         List<PetroleumProduct> petroleumProducts = peteroleumRepo.findAll();
-
         // Calculate the total sale for each petroleum product
         Map<String, Double> totalSales = new HashMap<>();
-
         for (PetroleumProduct product : petroleumProducts) {
             String productName = product.getPetroleum_product();
             double sale = product.getSale();
@@ -62,12 +54,16 @@ public class PetroleumProductService {
         return totalSales;
     }
 
-    public List<Object[]> getTop3CountriesByTotalSales() {
+    public List<Object[]> getTop3CountriesWithHighestSales() {
         return peteroleumRepo.findTop3CountriesByTotalSales();
     }
 
-    public List<Object[]> getButton3CountriesByTotalSales(){
+    public List<Object[]> getButton3CountriesWithLowestSales(){
         return peteroleumRepo.findButton3CountriesByTotalSales();
     }
+
+
+
+
 
 }

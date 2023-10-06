@@ -32,14 +32,16 @@ public class PetroleumController {
         return total.toString();
 
     }
+
     @GetMapping("/top3")
-    public List<Object[]> getTop3CountriesByTotalSales() {
-        return petroleumProductService.getTop3CountriesByTotalSales();
+    public List<Object[]> getTop3(){
+        return petroleumProductService.getTop3CountriesWithHighestSales();
+
     }
     @GetMapping("/button3")
-    public List<Object[]> getButton3CountriesByTotalSales() {
-        return petroleumProductService.getButton3CountriesByTotalSales();
-    }
+    public List<Object[]> getButton3(){
+        return petroleumProductService.getButton3CountriesWithLowestSales();
 
+    }
 }
 
