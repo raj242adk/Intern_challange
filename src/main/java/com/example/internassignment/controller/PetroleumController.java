@@ -1,5 +1,6 @@
 package com.example.internassignment.controller;
 
+import com.example.internassignment.repo.PeteroleumRepo;
 import com.example.internassignment.service.PetroleumProductService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,8 @@ import java.util.Map;
 public class PetroleumController {
     @Autowired
     private PetroleumProductService petroleumProductService;
+    @Autowired
+    private PeteroleumRepo peteroleumRepo;
 
     @GetMapping("/fetchandsave")
     public String fetchAndStoreData(){
@@ -33,15 +36,16 @@ public class PetroleumController {
 
     }
 
+    @GetMapping("/hello")
+    public String greet(){
+        return "topThree";
+    }
+
     @GetMapping("/top3")
-    public List<Object[]> getTop3(){
-        return petroleumProductService.getTop3CountriesWithHighestSales();
-
+    public String getTop3(Model model) {
+        model.addAttribute("top3Countries", petroleumProductService.getTop3CountriesByTotalSale());
+        return "topThree";
     }
-    @GetMapping("/button3")
-    public List<Object[]> getButton3(){
-        return petroleumProductService.getButton3CountriesWithLowestSales();
 
-    }
 }
 

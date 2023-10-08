@@ -54,13 +54,24 @@ public class PetroleumProductService {
         return totalSales;
     }
 
-    public List<Object[]> getTop3CountriesWithHighestSales() {
-        return peteroleumRepo.findTop3CountriesByTotalSales();
+    public List<Map.Entry<String,Long>> getTop3CountriesByTotalSale(){
+        List<PetroleumProduct> petroleumProducts=peteroleumRepo.findAll();
+
+        Map<String,Long> totalSalesByCountry=new HashMap<>();
+
+        petroleumProducts.stream()
+                .collect(Collectors.groupingBy(PetroleumProduct::getCountry,Collectors.summingLong(PetroleumProduct::getSale)))
+                .forEach((country,totalSale)->totalSalesByCountry.put(country,totalSale));
+
+        List<Map.Entry<String,Long>> sortedEntries = totalSalesByCountry.entrySet()
+                .stream()
+                .sorted(Map.Entry.<String,Long> comparingByValue().reversed())
+                .limit(3)
+                .collect(Collectors.toList());
+
+        return sortedEntries;
     }
 
-    public List<Object[]> getButton3CountriesWithLowestSales(){
-        return peteroleumRepo.findButton3CountriesByTotalSales();
-    }
 
 
 

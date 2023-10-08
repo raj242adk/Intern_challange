@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Top 3 Countries by Total Sales</title>
+</head>
+<body>
+<h1>Top 3 Countries by Total Sales</h1>
+<table>
+    <tr>
+        <th>Country</th>
+        <th>Total Sales</th>
+    </tr>
+    <tr th:each="entry : ${top3Countries}">
+        <td th:text="${entry.country}">Country</td>
+        <td th:text="${entry.totalSale}">Total Sales</td>
+    </tr>
+
+
+</table>
+</body>
+</html>
