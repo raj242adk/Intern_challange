@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Top 3 Countries by Total Sales</title>
+    <title>Button 3 Countries by Total Sales</title>
 </head>
 <body>
-<h1>Top 3 Countries by Total Sales</h1>
+<h1>Button 3 Countries by Total Sales</h1>
 <table>
     <tr>
         <th>Rank</th>
         <th>Country</th>
         <th>Total Sales</th>
     </tr>
-    <tr th:each="entry, iterStat : ${topThree}">
+    <tr th:each="entry, iterStat : ${buttonThree}">
         <td th:text="${iterStat.count}">Rank</td>
         <td th:text="${entry.key}">Country</td>
         <td th:text="${entry.value}">Total Sales</td>

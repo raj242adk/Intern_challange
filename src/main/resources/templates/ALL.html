@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>All Product Details</title>
+</head>
+<body>
+<h1>All Product Details</h1>
+<table border="1px">
+    <tr>
+        <th>Product</th>
+        <th>Country</th>
+        <th>Sales</th>
+        <th>Year</th>
+    </tr>
+    <tr th:each="entry : ${AllProductDisplay}">
+        <td th:text="${entry.getPetroleum_product}">Product</td>
+        <td th:text="${entry.country}">Country</td>
+        <td th:text="${entry.sale}">Sales</td>
+        <td th:text="${entry.year}">Year</td>
+    </tr>
+</table>
+</body>
+</html>

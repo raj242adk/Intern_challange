@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -36,16 +35,22 @@ public class PetroleumController {
 
     }
 
-    @GetMapping("/hello")
-    public String greet(){
-        return "topThree";
+    @GetMapping("/top3")
+    public List<Map.Entry<String, Long>> getTop3CountriesByTotalSales() {
+        return petroleumProductService.getTop3CountriesByTotalSale();
+    }
+    @GetMapping("/button3")
+    public List<Map.Entry<String, Long>> getButton3CountriesByTotalSales() {
+        return petroleumProductService.getBottom3CountriesByTotalSales();
     }
 
-    @GetMapping("/top3")
-    public String getTop3(Model model) {
-        model.addAttribute("top3Countries", petroleumProductService.getTop3CountriesByTotalSale());
-        return "topThree";
+    @GetMapping("/averageSales")
+    public List<Object[]> getAverageSalesByProductFor4YearIntervals() {
+        return petroleumProductService.getAvergageSaleByProdutFor4YearIntervals();
     }
+
+
+
 
 }
 
